@@ -1,0 +1,73 @@
+﻿<Window x:Class="WPFDBwithDI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFDBwithDI"
+        mc:Ignorable="d"
+        Title="User Registration" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="47"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" MinWidth="47"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" VerticalAlignment="Center" Height="26" Margin="0,0,4,0" >UserID :</Label>
+            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Height="26" Margin="0,0,4,0">UserName :</Label>
+            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Height="26" Margin="0,0,4,0">Group :</Label>
+            <Label Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Height="26" Margin="0,0,4,0">Host :</Label>
+            <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Height="26" Margin="0,0,4,0">IPAddress :</Label>
+
+            <TextBox Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left" VerticalContentAlignment="Center" Name="idbox" Width="100" Margin="0,10,0,10" />
+            <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center"  HorizontalAlignment="Left" Name="namebox" Width="100" Height="40" />
+            <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="groupbox" Width="100" Height="40" />
+            <TextBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="hostbox" Width="100" Height="40" />
+            <TextBox Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Name="ipbox" Width="100" Height="40" />
+            <Button Name="subbutton" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Submit" Width="100" Margin="0,10,0,10" Click="subbutton_Click"/>
+            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label>search by EmpId or Name</Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="Search" VerticalAlignment="Center" HorizontalAlignment="Right" Height="20" Width="100" FontWeight="Light" TextChanged="Search_TextChanged" />
+            </StackPanel>
+            <!--<Button Grid.Row="3" Grid.Column="1" Name="connectbtn" Content="clicktoconnect" Width="100" Height="50" HorizontalAlignment="Center" Click="Onconnect_Click"/> -->
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="127*"/>
+                <ColumnDefinition Width="73*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="userDataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="UserId" Header="ID" Binding="{Binding User_Id}" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn x:Name="UserName" Header="Name" Binding="{Binding User_Name}" Width="*"  IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="Group" Header="Group" Binding="{Binding Group}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="Host" Header="Host" Binding="{Binding Host}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn x:Name="IPAddress" Header="IPAddress" Binding="{Binding IP_Address}" Width="*" IsReadOnly="True"/>
+
+                    <DataGridTemplateColumn Header="Actions" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="Edit" Content="Edit" HorizontalAlignment="Left" Width="100" Height="50" Click="Edit_Click" />
+                                    <Button x:Name="Delete" Content="Delete" Width="100" Height="50" Click="Delete_Click" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
